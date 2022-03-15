@@ -11,7 +11,7 @@ const wordBttnclicked = () => {
     for (var i = 0; i < text.length; i++) {
         const wordelement = text[i];
 
-        if (wordelement.length > 4) {
+        if (wordelement.split("").length > 4) {
             arr += `<mark>${wordelement} </mark> `
         } else {
             arr += wordelement + " ";
