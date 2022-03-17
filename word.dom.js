@@ -2,7 +2,8 @@ const button = document.querySelector('.submit');
 const message = document.querySelector('.message');
 const sentence = document.querySelector('.sentence');
 const words = document.querySelector('.counter');
-const checkbox = document.querySelector('.myCheckbox')
+const checkbox = document.querySelector('.myCheckbox');
+const longest = document.querySelector('.longest')
 
 
 
@@ -31,7 +32,8 @@ const wordBttnclicked = () => {
 
 }
 
-function checkHide() {
+const checkHide = () => {
+    let test = wordBttnclicked();
     const word = sentence.value;
     const split = word.split(" ");
     let arr1 = "";
@@ -45,14 +47,33 @@ function checkHide() {
 
             arr1 += ''
         }
-        if (split[i].length >= 8) {
-            arr1 += `<mark>${wordelement}</mark> `
-        }
+
         message.innerHTML = arr1
     }
 
 }
+const longestWords = () => {
 
 
-checkbox.addEventListener('change', checkHide)
-button.addEventListener('click', wordBttnclicked)
+    console.log(sentence.value)
+    const word = sentence.value;
+    const long = word.split(' ');
+    var getLongword = '';
+    for (var i = 0; i < long.length; i++) {
+        if (long[i].length >= getLongword.length) {
+            getLongword = long[i]
+        }
+        console.log(getLongword);
+    }
+
+    longest.innerHTML = `This is the longerst word:<mark>${getLongword}</mark>`
+
+}
+
+
+
+
+
+checkbox.addEventListener('change', checkHide);
+button.addEventListener('click', wordBttnclicked);
+checkbox.addEventListener('change', longestWords);
