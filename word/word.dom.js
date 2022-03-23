@@ -11,15 +11,30 @@ const wordBttnclicked = () => {
     let counter = 0;
     const word = sentence.value;
     const text = word.split(" ");
+
     let arr = "";
+    var getLongword = '';
+    let anotherLongword = ""
+    for (var i = 0; i < text.length; i++) {
+        if (text[i].length >= getLongword.length) {
+            getLongword = text[i]
+        }
+
+        console.log(getLongword);
+    }
+    // const filterLong = (wordelement => wordelement.length == getLongword.length)
     for (var i = 0; i < text.length; i++) {
         const wordelement = text[i];
+        if (wordelement.length == getLongword.length) {
+            arr += `<mark class="log">${wordelement}</mark> `
 
-        if (wordelement.length > 4) {
+        } else if (wordelement.length > 4) {
             arr += `<mark>${wordelement}</mark> `
+
         } else {
             arr += wordelement + " ";
         }
+
         if (wordelement.length > 0) {
             counter++
         }
@@ -32,17 +47,30 @@ const wordBttnclicked = () => {
 
 }
 
+
 const checkHide = () => {
     const test = wordBttnclicked();
     const word = sentence.value;
     const split = word.split(" ");
+
     let arr1 = "";
+    var getLongword = '';
+    for (var i = 0; i < split.length; i++) {
+        if (split[i].length >= getLongword.length) {
+            getLongword = split[i]
+        }
+
+        console.log(getLongword);
+    }
 
     for (var i = 0; i < split.length; i++) {
         const wordelement = split[i];
 
+        if ((checkbox.checked == true) && wordelement.length == getLongword.length) {
+            arr1 += `<mark class="log">${wordelement}</mark> `
 
-        if ((checkbox.checked == true) && (split[i].length >= 5)) {
+        } else if ((checkbox.checked == true) && (split[i].length > 5)) {
+
             arr1 += `<mark>${wordelement}</mark> `
         } else {
 
@@ -67,25 +95,25 @@ const longestWords = () => {
     console.log(sentence.value)
     const word = sentence.value;
     const long = word.split(' ');
-    var getLongword = '';
-    let anotherLongword = ""
-    for (var i = 0; i < long.length; i++) {
-        if (long[i].length >= getLongword.length) {
-            getLongword = long[i]
-        }
+    // var getLongword = '';
+    // let anotherLongword = ""
+    // for (var i = 0; i < long.length; i++) {
+    //     if (long[i].length >= getLongword.length) {
+    //         getLongword = long[i]
+    //     }
 
-        console.log(getLongword);
-    }
+    //     console.log(getLongword);
+    // }
 
-    for (let i = 0; i < long.length; i++) {
-        const element = long[i];
-        if (element.length == getLongword.length) {
-            anotherLongword += element;
-        }
+    // for (let i = 0; i < long.length; i++) {
+    //     const element = long[i];
+    //     if (element.length == getLongword.length) {
+    //         anotherLongword += element;
+    //     }
 
-        longest.innerHTML = `This is the longerst word:<mark class="log">${anotherLongword}</mark>`
+    //     // longest.innerHTML = `This is the longerst word:<mark class="log">${anotherLongword}</mark>`
 
-    }
+    // }
 
 }
 

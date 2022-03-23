@@ -3,9 +3,8 @@ describe('Words Widget', function() {
 
         it('should be able to highlight the word >4 in the sentence', function() {
             let testingWords = wordWidgets();
-            testingWords.displayWord('How are you today');
-            assert.equal(testingWords.displayWord('today'))
-
+            testingWords.displayWord('hello world');
+            assert.equal(testingWords.)
 
         });
     });
