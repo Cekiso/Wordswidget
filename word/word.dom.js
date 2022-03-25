@@ -5,7 +5,14 @@ const words = document.querySelector('.counter');
 const checkbox = document.querySelector('.myCheckbox');
 const longest = document.querySelector('.longest')
 
+let existingSentence;
 
+//checking if the sentence is stored in the localStorage
+if (localStorage['sentence']) {
+    existingSentence = JSON.parse(localStorage['sentence'])
+}
+
+const setenceInstance = wordWidgets(existingSentence);
 
 const wordBttnclicked = () => {
     let counter = 0;
