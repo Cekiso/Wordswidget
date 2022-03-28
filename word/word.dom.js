@@ -9,10 +9,13 @@ let existingSentence;
 
 //checking if the sentence is stored in the localStorage
 if (localStorage['sentence']) {
+
     existingSentence = JSON.parse(localStorage['sentence'])
+
 }
 
 const setenceInstance = wordWidgets(existingSentence);
+
 
 const wordBttnclicked = () => {
     let counter = 0;
@@ -54,7 +57,9 @@ const wordBttnclicked = () => {
     }
     words.innerHTML = counter;
 
-
+    setenceInstance.setSenteces(word)
+    console.log(setenceInstance.getSentences());
+    localStorage['sentence'] = JSON.stringify(setenceInstance.getSentences());
 }
 
 const checkHide = () => {

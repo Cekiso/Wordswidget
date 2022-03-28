@@ -1,9 +1,11 @@
 const wordWidgets = (existingSentence) => {
-    let counter = 0;
+
 
     let wordList = existingSentence || [];
+    console.log(wordList);
 
     const wordCounter = (sentence) => {
+        let counter = 0;
         const text = sentence.split(" ");
         for (var i = 0; i < text.length; i++) {
             const wordelement = text[i];
@@ -113,14 +115,30 @@ const wordWidgets = (existingSentence) => {
         return arr1
     }
 
+    const setSenteces = (sentence) => {
+
+        if (!wordList.includes(sentence) && sentence != '') {
+            wordList.push(sentence)
+        } else {
+            return;
+        }
+
+    }
+    const getSentences = () => {
+        return wordList
+    }
+
+    //create a function for the counter: return the length of the list
     const counterWord = () => {
+        console.log(wordList.length);
         return wordList.length;
 
     }
 
-    function senteces() {
-        console.log(wordList);
-        return wordList;
+    //create a function that returns all the name in the list 
+    const words = () => {
+        console.log(sentence.wordList + 'sdfghjk');
+        return sentence.wordList;
 
     }
 
@@ -129,7 +147,9 @@ const wordWidgets = (existingSentence) => {
         wordCounter,
         hideHighlight,
         counterWord,
-        senteces,
-        markedWords
+        words,
+        markedWords,
+        setSenteces,
+        getSentences
     }
 }
