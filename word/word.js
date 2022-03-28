@@ -137,10 +137,10 @@ const wordWidgets = (existingSentence) => {
 
     //create a function that returns all the name in the list 
     const words = () => {
-        console.log(sentence.wordList + 'sdfghjk');
         return sentence.wordList;
 
     }
+
 
     return {
         sentenceWord,
@@ -151,5 +151,6 @@ const wordWidgets = (existingSentence) => {
         markedWords,
         setSenteces,
         getSentences
+
     }
 }

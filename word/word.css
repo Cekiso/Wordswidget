@@ -24,3 +24,8 @@
         .log {
             background-color: limegreen;
         }
+        
+        table,
+        td {
+            border: 1px solid;
+        }

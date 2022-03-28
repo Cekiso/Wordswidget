@@ -9,6 +9,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <title>Words widget</title>
 </head>
+<header>
+    <script type="text/x-template" class="userTemplate">
+
+        <tr>
+            <td>
+
+                {{#each paragraphs}}
+
+                <p>{{this}}</p>
+
+                {{else}} {{/each}}
+
+            </td>
+        </tr>
+
+    </script>
+</header>
 
 <body>
     <h1>Words widget</h1>
@@ -30,8 +47,16 @@
 
     </div>
     <br>
-    <div class="longest">
+    <div class="tables">
+        <table>
+            <tr>
+                <td>
+                    <span class="sentencesWords"></span>
 
+                </td>
+
+            </tr>
+        </table>
     </div>
 
 

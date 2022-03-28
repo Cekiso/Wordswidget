@@ -3,7 +3,12 @@ const message = document.querySelector('.message');
 const sentence = document.querySelector('.sentence');
 const words = document.querySelector('.counter');
 const checkbox = document.querySelector('.myCheckbox');
-const longest = document.querySelector('.longest')
+const sentencesWords = document.querySelector('.sentencesWords')
+
+const templateSource = document.querySelector(".userTemplate").innerHTML;
+
+// compile the template
+var userTemplate = Handlebars.compile(templateSource);
 
 let existingSentence;
 
@@ -23,21 +28,10 @@ const wordBttnclicked = () => {
     const text = word.split(" ");
 
     let arr = "";
-    var getLongword = '';
-    let anotherLongword = ""
-    for (var i = 0; i < text.length; i++) {
-        if (text[i].length >= getLongword.length) {
-            getLongword = text[i]
 
-        }
-
-        console.log(getLongword);
-    }
-    // const filterLong = (wordelement => wordelement.length == getLongword.length)
     for (var i = 0; i < text.length; i++) {
 
         const wordelement = text[i];
-        ////wordelement.length == getLongword.length
         if (wordelement.length > 6) {
             arr += `<mark class="log">${wordelement}</mark> `
 
@@ -51,16 +45,27 @@ const wordBttnclicked = () => {
         if (wordelement.length > 0) {
             counter++
         }
-        console.log(wordelement);
-        // arr.push(word)
         message.innerHTML = arr;
+    }
+    if (localStorage['sentence']) {
+        const sentenceListString = localStorage['sentence'];
+        existingSentence = sentenceListString;
     }
     words.innerHTML = counter;
 
     setenceInstance.setSenteces(word)
-    console.log(setenceInstance.getSentences());
+
+    sentencesWords.innerHTML = userTemplate({
+        paragraphs: setenceInstance.getSentences()
+    })
+    localStorage['sentence'] = sentence;
+    // console.log(setenceInstance.getSentences());
     localStorage['sentence'] = JSON.stringify(setenceInstance.getSentences());
+
+
 }
+
+
 
 const checkHide = () => {
     const test = wordBttnclicked();
