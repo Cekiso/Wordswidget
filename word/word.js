@@ -56,7 +56,7 @@ const wordWidgets = (existingSentence) => {
 
 
     }
-    const hideHighlight = (sentence) => {
+    const hideHighlightWord = (sentence) => {
         // const test = wordBttnclicked();
 
         const split = sentence.split(" ");
@@ -89,41 +89,47 @@ const wordWidgets = (existingSentence) => {
         return arr1
     }
     const markedWords = (sentence) => {
-        const split = sentence.split(" ");
+            const split = sentence.split(" ");
 
-        let arr1 = "";
-        var getLongword = '';
-        for (var i = 0; i < split.length; i++) {
-            if (split[i].length >= getLongword.length) {
-                getLongword = split[i]
+            let arr1 = "";
+            var getLongword = '';
+            for (var i = 0; i < split.length; i++) {
+                if (split[i].length >= getLongword.length) {
+                    getLongword = split[i]
+                }
             }
-        }
-        for (var i = 0; i < split.length; i++) {
-            const wordelement = split[i];
-            //wordelement.length == getLongword.length
-            if (split[i].length > 4) {
+            for (var i = 0; i < split.length; i++) {
+                const wordelement = split[i];
+                //wordelement.length == getLongword.length
+                if (split[i].length > 4) {
 
-                arr1 += `<mark>${wordelement}</mark> `
-            } else {
+                    arr1 += `<mark>${wordelement}</mark> `
+                } else {
 
-                arr1 += ''
+                    arr1 += ''
+                }
+
+
             }
 
-
+            return arr1
         }
-
-        return arr1
-    }
-
+        //this is a function tht is pushing into an array localstorage 
     const setSenteces = (sentence) => {
 
         if (!wordList.includes(sentence) && sentence != '') {
-            wordList.push(sentence)
-        } else {
-            return;
-        }
+            if (wordList[4]) {
+                wordList.shift()
+                wordList.push(sentence)
+            } else {
+                wordList.push(sentence)
+                return;
 
+            }
+        }
     }
+
+
     const getSentences = () => {
         return wordList
     }
@@ -141,11 +147,12 @@ const wordWidgets = (existingSentence) => {
 
     }
 
+    //nkuli
 
     return {
         sentenceWord,
         wordCounter,
-        hideHighlight,
+        hideHighlightWord,
         counterWord,
         words,
         markedWords,

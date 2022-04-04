@@ -1,6 +1,6 @@
 const button = document.querySelector('.submit');
 const message = document.querySelector('.message');
-const sentence = document.querySelector('.sentence');
+const sentenceEntered = document.querySelector('.sentence');
 const words = document.querySelector('.counter');
 const checkbox = document.querySelector('.myCheckbox');
 const sentencesWords = document.querySelector('.sentencesWords')
@@ -14,9 +14,7 @@ let existingSentence;
 
 //checking if the sentence is stored in the localStorage
 if (localStorage['sentence']) {
-
     existingSentence = JSON.parse(localStorage['sentence'])
-
 }
 
 const setenceInstance = wordWidgets(existingSentence);
@@ -24,7 +22,7 @@ const setenceInstance = wordWidgets(existingSentence);
 
 const wordBttnclicked = () => {
     let counter = 0;
-    const word = sentence.value;
+    const word = sentenceEntered.value;
     const text = word.split(" ");
 
     let arr = "";
@@ -47,20 +45,23 @@ const wordBttnclicked = () => {
         }
         message.innerHTML = arr;
     }
+
+    words.innerHTML = counter;
+
     if (localStorage['sentence']) {
         const sentenceListString = localStorage['sentence'];
         existingSentence = sentenceListString;
-    }
-    words.innerHTML = counter;
 
+    }
     setenceInstance.setSenteces(word)
 
     sentencesWords.innerHTML = userTemplate({
         paragraphs: setenceInstance.getSentences()
     })
-    localStorage['sentence'] = sentence;
+    localStorage['sentence'] = setenceInstance.getSentences();
     // console.log(setenceInstance.getSentences());
     localStorage['sentence'] = JSON.stringify(setenceInstance.getSentences());
+
 
 
 }
@@ -69,7 +70,7 @@ const wordBttnclicked = () => {
 
 const checkHide = () => {
     const test = wordBttnclicked();
-    const word = sentence.value;
+    const word = sentenceEntered.value;
     const split = word.split(" ");
 
     let arr1 = "";
@@ -109,9 +110,26 @@ const checkHide = () => {
         }
     }
     message.innerHTML = arr1
+
 }
+
+
+
+var themaintextarea = document.getElementsByClassName('sentencesWords');
+console.log(themaintextarea);
+
+const replace_sentence = (e) => {
+    console.log(e);
+    var themaintext = e.target.innerHTML
+    console.log(themaintext);
+    // alert(themaintext);
+    document.getElementsByClassName('message').value = themaintext;
+    message.innerHTML = setenceInstance.sentenceWord(themaintext);
+
+}
+
 
 
 checkbox.addEventListener('change', checkHide);
 button.addEventListener('click', wordBttnclicked);
-// checkbox.addEventListener('change', longestWords);
+sentencesWords.addEventListener('click', replace_sentence)
